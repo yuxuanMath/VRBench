@@ -121,7 +121,26 @@
     </div>
   </section>
 
-  <section class="section band" id="questions"><div class="wrap-copy"><h2>Questions? Answers.</h2><div class="faq-list"><details><summary>What does a model predict?<span aria-hidden="true">＋</span></summary><p>A sequence of 36 tool-center-point poses in world coordinates, including orientation and gripper or contact events. The model sees the task instruction, three initial RGB images, camera calibration and the initial robot state.</p></details><details><summary>How does this relate to closed-loop tasks?<span aria-hidden="true">＋</span></summary><p>VRBench uses robot manipulation tasks to examine spatial and task reasoning through one offline prediction. Closed-loop execution also depends on feedback and the controller. Agreement with closed-loop performance is a validation question, not an assumption.</p></details><details><summary>What does the overall score mean?<span aria-hidden="true">＋</span></summary><p>Each stage earns task credit for the required interaction and its order. It retains 25% of that credit; the other 75% is multiplied by its collision and tracking scores, each scaled to 0–1. A score below 0.2 sets that product to zero. Overall is the mean across 50 tasks. The scoring rules were calibrated using model outputs.</p></details><details><summary>What is visible to the model?<span aria-hidden="true">＋</span></summary><p>Only the public initial observations and task specification. Expert trajectories, future frames and scoring definitions are kept out of the prediction input.</p></details><details><summary>How can I evaluate another model?<span aria-hidden="true">＋</span></summary><p>Use the evaluation code with a compatible dataset and your model’s API configuration. The repository documents prediction, joint-path solving, geometric scoring and result aggregation.</p><a href="https://github.com/polyadic-research/VRbench#evaluate" target="_blank" rel="noopener">View evaluation code ↗</a></details></div></div></section>
+  <section class="section band" id="questions">
+    <div class="wrap-copy">
+      <h2>Questions? Answers.</h2>
+      <div class="faq-list">
+        <details>
+          <summary>What does the overall score mean?<span aria-hidden="true">＋</span></summary>
+          <p>The leaderboard averages scores across 50 tasks. Each stage keeps 10% of its task score. The other 90% is scaled by the product of its tracking and collision scores, each divided by 100. If tracking falls below 40 or collision falls below 30, the stage keeps only the 10% share. The scoring rules were calibrated using model outputs.</p>
+        </details>
+        <details>
+          <summary>How does the offline score relate to closed-loop success?<span aria-hidden="true">＋</span></summary>
+          <p>The offline score measures the quality of a plan predicted from the initial views. The closed-loop success rate measures how often the task is completed in simulation with a shared executor. The executor can recover from some planning errors or fail to carry out a sound plan.</p>
+        </details>
+        <details>
+          <summary>How can I evaluate another model?<span aria-hidden="true">＋</span></summary>
+          <p>Configure your model’s API, then run <code>vrbench predict</code>, <code>vrbench solve</code>, and <code>vrbench score</code> on the dataset. You can start with one task or score the full suite.</p>
+          <a href="https://github.com/polyadic-research/VRbench#evaluate" target="_blank" rel="noopener">Evaluation commands ↗</a>
+        </details>
+      </div>
+    </div>
+  </section>
 
 </main>
 <footer><div class="wrap"><a href="#top" class="footer-wordmark">VRBench</a><a href="https://github.com/polyadic-research/VRbench" target="_blank" rel="noopener">GitHub ↗</a></div></footer>
