@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="/VRBench/assets/index-D0e626mO.js"></script>
-  <link rel="stylesheet" crossorigin href="/VRBench/assets/index-CBFMXK3I.css">
+  <script type="module" crossorigin src="/VRBench/assets/index-Bn4TTNap.js"></script>
+  <link rel="stylesheet" crossorigin href="/VRBench/assets/index-BgTPQyR0.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -75,7 +75,7 @@
 
   <section class="section" id="how-it-works">
     <div class="wrap"><p class="eyebrow">How it works</p><h2>From observation<br />to evaluation.</h2>
-      <div class="pipeline"><article><span class="step-index">01 / OBSERVE</span><div class="pipeline-icon observation-icon" aria-label="Three initial camera views"><figure class="observe-view observe-left"><img src="/VRBench/media/observe/left.png" alt="Left camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Left</figcaption></figure><figure class="observe-view observe-right"><img src="/VRBench/media/observe/right.png" alt="Right camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Right</figcaption></figure><figure class="observe-view observe-wrist"><img src="/VRBench/media/observe/wrist.png" alt="Wrist camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Wrist</figcaption></figure></div><h3>Initial observations.</h3><p>Instruction, three RGB views,<br />camera calibration and robot state.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">02 / PREDICT</span><div class="pipeline-icon prediction-icon" id="pipeline-path"><video id="prediction-video" muted loop playsinline preload="metadata" tabindex="0" width="960" height="600" poster="/VRBench/media/predict/predict.png" aria-label="Imagined robot plan draws a TCP trajectory; the robot and scene dissolve, leaving only the trajectory. Click or press Space to pause or play."><source src="/VRBench/media/predict/predict.mp4" type="video/mp4"/></video></div><h3>A TCP trajectory.</h3><p>Positions, orientations<br />and interaction events.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">03 / EVALUATE</span><div class="pipeline-icon evaluation-icon"><div><span>Task</span><i></i></div><div><span>Collision</span><i></i></div><div><span>Tracking</span><i></i></div></div><h3>Composite score.</h3><p>Aggeration from task,<br />collision and tracking scores.</p></article></div>
+      <div class="pipeline"><article><span class="step-index">01 / OBSERVE</span><div class="pipeline-icon observation-icon" aria-label="Three initial camera views"><figure class="observe-view observe-left"><img src="/VRBench/media/observe/left.png" alt="Left camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Left</figcaption></figure><figure class="observe-view observe-right"><img src="/VRBench/media/observe/right.png" alt="Right camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Right</figcaption></figure><figure class="observe-view observe-wrist"><img src="/VRBench/media/observe/wrist.png" alt="Wrist camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Wrist</figcaption></figure></div><h3>Initial observations.</h3><p>Instruction, three RGB views,<br />camera calibration and robot state.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">02 / PREDICT</span><div class="pipeline-icon prediction-icon" id="pipeline-path"><video id="prediction-video" muted loop playsinline preload="metadata" tabindex="0" width="960" height="600" poster="/VRBench/media/predict/predict.png" aria-label="Imagined robot plan draws a TCP trajectory; the robot and scene dissolve, leaving only the trajectory. Click or press Space to pause or play."><source src="/VRBench/media/predict/predict.mp4?fps=48" type="video/mp4"/></video></div><h3>A TCP trajectory.</h3><p>Positions, orientations<br />and interaction events.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">03 / EVALUATE</span><div class="pipeline-icon evaluation-icon"><div><span>Task</span><i></i></div><div><span>Collision</span><i></i></div><div><span>Tracking</span><i></i></div></div><h3>Composite score.</h3><p>Aggeration from task,<br />collision and tracking scores.</p></article></div>
     </div>
   </section>
 
@@ -86,7 +86,7 @@
       <div class="measure-cards">
         <article class="measure-card">
           <div class="measure-frame">
-            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/task.png" aria-label="Two proposed grasp points fall outside the pan handle and sponge regions. The later faucet stage remains locked."><source src="/VRBench/media/measure/task.mp4" type="video/mp4"></video>
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/task.png" aria-label="Two proposed grasp points fall outside the pan handle and sponge regions. The later faucet stage remains locked."><source src="/VRBench/media/measure/task.mp4?fps=60" type="video/mp4"></video>
             
             <button type="button" class="measure-control" aria-label="Play task progress animation" data-title="task progress">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
@@ -97,7 +97,7 @@
         </article>
         <article class="measure-card">
           <div class="measure-frame">
-            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/collision.png" aria-label="The reconstructed arm approaches a cabinet door. A coral ring marks the peak penetration of 27.4 mm."><source src="/VRBench/media/measure/collision.mp4" type="video/mp4"></video>
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/collision.png" aria-label="The reconstructed arm approaches a cabinet door. A coral ring marks the peak penetration of 27.4 mm."><source src="/VRBench/media/measure/collision.mp4?fps=60" type="video/mp4"></video>
             
             <button type="button" class="measure-control" aria-label="Play collision animation" data-title="collision">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
@@ -108,7 +108,7 @@
         </article>
         <article class="measure-card">
           <div class="measure-frame">
-            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/tracking.png" aria-label="The blue planned gripper and graphite reconstructed gripper reach different positions and angles at the same waypoint."><source src="/VRBench/media/measure/tracking.mp4" type="video/mp4"></video>
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/tracking.png" aria-label="The blue planned gripper and graphite reconstructed gripper reach different positions and angles at the same waypoint."><source src="/VRBench/media/measure/tracking.mp4?fps=60" type="video/mp4"></video>
             <div class="measure-key" aria-hidden="true"><span>Planned</span><span>Reconstructed</span></div>
             <button type="button" class="measure-control" aria-label="Play pose tracking animation" data-title="pose tracking">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
