@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>VRBench — VirtualRoboBench</title>
+  <meta name="description" content="Evaluate embodied vision-language models in a single offline task. Explore robot trajectory prediction, task regions and geometric evaluation with VRBench." />
+  <link rel="icon" type="image/svg+xml" href="/VRBench/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/VRBench/assets/index-BQ2dwP6P.js"></script>
+  <link rel="stylesheet" crossorigin href="/VRBench/assets/index-DMu1XW0P.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="nav" aria-label="VRBench">
+  <a class="nav-title" href="#top">VRBench</a>
+  <div class="explore">
+    <button class="pill outline" id="explore-button" aria-expanded="false" aria-controls="explore-menu">Explore <span aria-hidden="true">⌄</span></button>
+    <div class="explore-menu" id="explore-menu" hidden>
+      <a href="#leaderboard">Leaderboard</a><a href="#tasks">Explore the tasks</a><a href="#how-it-works">How it works</a><a href="#measure">What we measure</a><a href="#questions">Questions</a>
+    </div>
+  </div>
+  <a class="pill solid" href="https://github.com/polyadic-research/VRbench" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+</nav>
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow">VirtualRoboBench</p>
+      <h1>Offline Bench<br /><span>for Action-Level Planning.</span></h1>
+      <p class="hero-sub">Evaluating how well VLMs generate manipulation plans with pose trajectories a robot can follow.</p>
+    </div>
+    <div class="hero-stage wrap-mid">
+      <div class="hero-media">
+        <div class="hero-film">
+          <video class="hero-video" tabindex="0" muted loop playsinline preload="metadata" width="1680" height="704" poster="/VRBench/media/highlights/capabilities.png" aria-label="Three camera views and a task instruction become a VLM’s imagined manipulation plan and TCP trajectory. Click or press Space to play or pause."><source src="/VRBench/media/highlights/capabilities.mp4" type="video/mp4" /></video>
+        </div>
+      </div>
+    </div>
+    <div class="hero-links"><a href="https://github.com/polyadic-research/VRbench" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a><a href="https://huggingface.co/datasets/cyx712/VirtualRoboBench" target="_blank" rel="noopener">Dataset <span aria-hidden="true">↗</span></a><span class="link-placeholder">Paper <span>—</span></span></div>
+  </section>
+
+  <section class="section" id="leaderboard">
+    <div class="wrap"><p class="eyebrow">Leaderboard</p><div class="headrow"><h2>How well do<br />models plan?</h2></div>
+      <div class="ranking-chart" id="ranking-chart" aria-label="All models ranked by overall geometric score"></div>
+      <div class="table-scroll" role="region" aria-label="VRBench model leaderboard" tabindex="0"><table><thead><tr><th>Model</th><th>Reasoning</th><th>Task score</th><th>Atomic</th><th>Composite</th><th class="overall">Overall</th></tr></thead><tbody id="model-rows"></tbody></table></div>
+      <h3 class="comparison-title" id="comparison-title">Aligned with Closed-Loop Performance</h3>
+      <div class="ranking-comparison" role="group" aria-labelledby="comparison-title">
+        <section class="ranking-panel" aria-labelledby="offline-ranking-title">
+          <h3 id="offline-ranking-title">Offline planning</h3>
+          <p class="ranking-caption">VRBench score</p>
+          <div class="ranking-chart" id="offline-comparison-chart" aria-label="Offline scores for the five compared models"></div>
+        </section>
+        <section class="ranking-panel" aria-labelledby="simulation-ranking-title">
+          <div class="ranking-panel-heading"><h3 id="simulation-ranking-title">Closed-loop simulation</h3><span class="estimate-label" title="Unfinished Luna and Qwen tasks count as failures. Unfinished Astra tasks inherit Sol outcomes; unfinished Kimi tasks inherit Qwen outcomes. These are not 50 measured outcomes per model.">Hypothetical completion</span></div>
+          <p class="ranking-caption">Success rate</p>
+          <div class="ranking-chart simulation-ranking" id="simulation-ranking-chart" aria-label="Hypothetically completed simulation success rates; includes imputed outcomes"></div>
+        </section>
+      </div>
+
+
+    </div>
+  </section>
+
+  <section class="section band" id="tasks">
+    <div class="wrap"><p class="eyebrow">The benchmark</p><div class="headrow"><h2>Explore the tasks.</h2></div>
+      <div class="task-browser">
+        <div class="task-sidebar"><div class="segmented compact" role="group" aria-label="Task category"><button class="active" data-group="all">All</button><button data-group="atomic">Atomic</button><button data-group="composite">Composite</button></div><div id="task-list" class="task-list" aria-label="Example tasks"></div><p class="sidebar-note">Selected examples from 50 tasks.<br />25 atomic · 25 composite.</p></div>
+        <div class="task-preview"><div class="task-heading"><span id="task-category" class="tiny-label">ATOMIC TASK</span></div><h3 id="task-title"></h3><p id="task-instruction"></p><div class="camera-grid" id="task-cameras"></div><div class="task-preview-bottom"><span>Initial RGB observations</span></div><figure class="expert-view"><figcaption>3D visualization</figcaption><iframe id="expert-view" title="Expert trajectory" loading="lazy"></iframe></figure></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="wrap"><p class="eyebrow">How it works</p><h2>From observation<br />to evaluation.</h2>
+      <div class="pipeline"><article><span class="step-index">01 / OBSERVE</span><div class="pipeline-icon observation-icon" aria-label="Three initial camera views"><figure class="observe-view observe-left"><img src="/VRBench/media/observe/left.png" alt="Left camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Left</figcaption></figure><figure class="observe-view observe-right"><img src="/VRBench/media/observe/right.png" alt="Right camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Right</figcaption></figure><figure class="observe-view observe-wrist"><img src="/VRBench/media/observe/wrist.png" alt="Wrist camera view of the same initial scene" loading="lazy" width="720" height="456"/><figcaption>Wrist</figcaption></figure></div><h3>Initial observations.</h3><p>Instruction, three RGB views,<br />camera calibration and robot state.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">02 / PREDICT</span><div class="pipeline-icon prediction-icon" id="pipeline-path"><video id="prediction-video" muted loop playsinline preload="metadata" tabindex="0" width="960" height="600" poster="/VRBench/media/predict/predict.png" aria-label="Imagined robot plan draws a TCP trajectory; the robot and scene dissolve, leaving only the trajectory. Click or press Space to pause or play."><source src="/VRBench/media/predict/predict.mp4" type="video/mp4"/></video></div><h3>A TCP trajectory.</h3><p>Positions, orientations<br />and interaction events.</p></article><span class="pipeline-arrow" aria-hidden="true">→</span><article><span class="step-index">03 / EVALUATE</span><div class="pipeline-icon evaluation-icon"><div><span>Task</span><i></i></div><div><span>Collision</span><i></i></div><div><span>Tracking</span><i></i></div></div><h3>Composite score.</h3><p>Aggeration from task,<br />collision and tracking scores.</p></article></div>
+    </div>
+  </section>
+
+  <section class="section" id="measure" aria-labelledby="measure-title">
+    <div class="wrap">
+      <p class="eyebrow">The evaluation</p>
+      <h2 id="measure-title">What we measure.</h2>
+      <div class="measure-cards">
+        <article class="measure-card">
+          <div class="measure-frame">
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/task.png" aria-label="Two proposed grasp points fall outside the pan handle and sponge regions. The later faucet stage remains locked."><source src="/VRBench/media/measure/task.mp4" type="video/mp4"></video>
+            
+            <button type="button" class="measure-control" aria-label="Play task progress animation" data-title="task progress">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
+            </button>
+          </div>
+          <h3>Task progress.</h3>
+          <p>Does the plan specify the right interactions, in the right places and order?</p>
+        </article>
+        <article class="measure-card">
+          <div class="measure-frame">
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/collision.png" aria-label="The reconstructed arm approaches a cabinet door. A coral ring marks the peak penetration of 27.4 mm."><source src="/VRBench/media/measure/collision.mp4" type="video/mp4"></video>
+            
+            <button type="button" class="measure-control" aria-label="Play collision animation" data-title="collision">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
+            </button>
+          </div>
+          <h3>Collision.</h3>
+          <p>Where, how deeply, and how often does the arm intersect the scene?</p>
+        </article>
+        <article class="measure-card">
+          <div class="measure-frame">
+            <video width="720" height="480" muted playsinline preload="none" poster="/VRBench/media/measure/tracking.png" aria-label="The blue planned gripper and graphite reconstructed gripper reach different positions and angles at the same waypoint."><source src="/VRBench/media/measure/tracking.mp4" type="video/mp4"></video>
+            <div class="measure-key" aria-hidden="true"><span>Planned</span><span>Reconstructed</span></div>
+            <button type="button" class="measure-control" aria-label="Play pose tracking animation" data-title="pose tracking">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path class="play-mark" d="m9 6 9 6-9 6z"/><path class="pause-mark" d="M8 6v12m8-12v12"/><path class="replay-mark" d="M5 10a7 7 0 1 1 .8 6M5 5v5h5"/></svg>
+            </button>
+          </div>
+          <h3>Pose tracking.</h3>
+          <p>How closely can the arm follow the planned positions and orientations?</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="questions"><div class="wrap-copy"><h2>Questions? Answers.</h2><div class="faq-list"><details><summary>What does a model predict?<span aria-hidden="true">＋</span></summary><p>A sequence of 36 tool-center-point poses in world coordinates, including orientation and gripper or contact events. The model sees the task instruction, three initial RGB images, camera calibration and the initial robot state.</p></details><details><summary>How does this relate to closed-loop tasks?<span aria-hidden="true">＋</span></summary><p>VRBench uses robot manipulation tasks to examine spatial and task reasoning through one offline prediction. Closed-loop execution also depends on feedback and the controller. Agreement with closed-loop performance is a validation question, not an assumption.</p></details><details><summary>What does the overall score mean?<span aria-hidden="true">＋</span></summary><p>Each stage earns task credit for the required interaction and its order. It retains 25% of that credit; the other 75% is multiplied by its collision and tracking scores, each scaled to 0–1. A score below 0.2 sets that product to zero. Overall is the mean across 50 tasks. The scoring rules were calibrated using model outputs.</p></details><details><summary>What is visible to the model?<span aria-hidden="true">＋</span></summary><p>Only the public initial observations and task specification. Expert trajectories, future frames and scoring definitions are kept out of the prediction input.</p></details><details><summary>How can I evaluate another model?<span aria-hidden="true">＋</span></summary><p>Use the evaluation code with a compatible dataset and your model’s API configuration. The repository documents prediction, joint-path solving, geometric scoring and result aggregation.</p><a href="https://github.com/polyadic-research/VRbench#evaluate" target="_blank" rel="noopener">View evaluation code ↗</a></details></div></div></section>
+
+</main>
+<footer><div class="wrap"><a href="#top" class="footer-wordmark">VRBench</a><a href="https://github.com/polyadic-research/VRbench" target="_blank" rel="noopener">GitHub ↗</a></div></footer>
+</body>
+</html>
