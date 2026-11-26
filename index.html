@@ -127,7 +127,8 @@
       <div class="faq-list">
         <details>
           <summary>What does the overall score mean?<span aria-hidden="true">＋</span></summary>
-          <p>The leaderboard averages scores across 50 tasks. Each stage keeps 10% of its task score. The other 90% is scaled by the product of its tracking and collision scores, each divided by 100. The stage keeps only the 10% share if tracking falls below 40, collision falls below 30, or peak penetration reaches 60 mm (50 mm beyond the geometric tolerance).</p>
+          <p>The leaderboard averages the composite scores of 50 tasks. Each task score in this average combines its stages by weight. Each stage keeps 10% of its task-stage score. The remaining 90% is scaled by the product of its tracking and collision scores, each divided by 100.</p>
+          <p>A stage keeps only the 10% share if tracking drops below 40, collision drops below 30, or even one sampled arm–environment penetration reaches 60 mm (50 mm beyond the 10 mm tolerance). Each task specifies which intended contacts to exclude.</p>
         </details>
         <details>
           <summary>How does the offline score relate to closed-loop success?<span aria-hidden="true">＋</span></summary>
